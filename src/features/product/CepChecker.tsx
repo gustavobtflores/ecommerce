@@ -1,6 +1,7 @@
 'use client';
 
 import { CepResponse, validateCep } from '@/app/actions/validateCep';
+import Spinner from '@/components/Spinner';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { InputMask } from '@react-input/mask';
 import { useState } from 'react';
@@ -17,6 +18,7 @@ export function CepChecker() {
     event.preventDefault();
     setError(null);
     setAddress(null);
+    setLoading(true);
 
     try {
       const form = event.currentTarget;
@@ -55,10 +57,10 @@ export function CepChecker() {
             />
             <button
               type="submit"
-              className="cursor-pointer bg-black text-white w-24 rounded-lg py-2 font-bold"
+              className="flex justify-center cursor-pointer bg-black text-white w-24 rounded-lg py-2 font-bold disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}
             >
-              Buscar
+              {loading ? <Spinner width={24} height={24} /> : 'Buscar'}
             </button>
           </div>
           {error && (

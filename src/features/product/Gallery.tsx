@@ -34,7 +34,7 @@ export function Gallery({ images }: { images: string[] }) {
               alt=""
               width={64}
               height={64}
-              className="w-full h-full object-cover rounded-lg border border-gray-200 hover:border-gray-300 transition duration-200"
+              className="w-16 h-16 aspect-square object-cover rounded-lg border border-gray-200 hover:border-gray-300 transition duration-200"
               style={{
                 borderColor: currentImage === image ? '#50B0F4' : '',
               }}
