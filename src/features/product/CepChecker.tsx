@@ -1,9 +1,15 @@
+'use client';
+
 import { CepResponse, validateCep } from '@/app/actions/validateCep';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { InputMask } from '@react-input/mask';
 import { useState } from 'react';
 
 export function CepChecker() {
-  const [address, setAddress] = useState<CepResponse | null>(null);
+  const [address, setAddress] = useLocalStorage<CepResponse | null>(
+    'cep',
+    null
+  );
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +51,7 @@ export function CepChecker() {
               replacement={{ _: /\d/ }}
               id="cep"
               name="cep"
+              defaultValue={address?.cep}
             />
             <button
               type="submit"

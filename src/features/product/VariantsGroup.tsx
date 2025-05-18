@@ -1,14 +1,18 @@
 'use client';
 
 import { Product } from '@/constants/product';
-import { useState } from 'react';
 import { VariantSelector } from './VariantSelector';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export function VariantsGroup({ product }: { product: Product }) {
-  const [selectedColor, setSelectedColor] = useState<string | null>(
+  const [selectedColor, setSelectedColor] = useLocalStorage<string | null>(
+    'selectedColor',
     product.colors[0].value
   );
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useLocalStorage<string | null>(
+    'selectedSize',
+    null
+  );
 
   return (
     <>

@@ -1,10 +1,13 @@
 'use client';
 
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export function Gallery({ images }: { images: string[] }) {
-  const [currentImage, setCurrentImage] = useState(images[0]);
+  const [currentImage, setCurrentImage] = useLocalStorage(
+    'selectedThumbnail',
+    images[0]
+  );
 
   return (
     <div className="flex flex-col items-center p-4">
